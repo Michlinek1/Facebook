@@ -6,7 +6,7 @@ ul, li{
 
 }
 ul{
-    text-align: center;
+    text-align: center !important;
     justify-content: center;
     display: block;
 
@@ -25,4 +25,21 @@ a:hover{
         font-size: 20px;
     }
     
+}
+.box{
+    width: 800px;
+    height: 250px;
+    border: 2px solid black;
+    margin: auto;
+}
+.user{
+    font-size: 37px;
+    text-align: left;
+    margin-top: 0px;
+    color:blue;
+}
+.godzina{
+    display: inline;
+    text-align: right;
+    justify-content: right;
 }
