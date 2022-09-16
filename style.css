@@ -38,8 +38,19 @@ a:hover{
     margin-top: 0px;
     color:blue;
 }
+.usercurrent{
+    color:green;
+    font-size: 37px;
+    text-align: left;
+    margin-top: 0px;
+}
 .godzina{
     display: inline;
     text-align: right;
     justify-content: right;
+}
+#post1{
+    width : 600px;
+    height :200px;
+    resize: none;
 }

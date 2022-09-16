@@ -53,7 +53,7 @@ if ($_SESSION['zalogowany']==True) {
             }
             $_SESSION['login']=$login;
             $_SESSION['zalogowany']= True;
-            header("Location: index.php");
+            header("Location: main.php");
         }
 
 

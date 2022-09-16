@@ -4,7 +4,7 @@ if ($_SESSION['zalogowany']!=True) {
     header("location:logowanie.php");
 }
 $pol = mysqli_connect("localhost", "root", "", "baza");
-$sql= mysqli_query($pol,"SELECT * FROM posty");
+$sql= mysqli_query($pol,"SELECT * FROM posty ORDER BY datawystawienia DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,6 @@ $sql= mysqli_query($pol,"SELECT * FROM posty");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facenbok</title>
     <link rel = "stylesheet" href = "style.css">
-    
 </head>
 <body>
 <ul class="nav">
@@ -23,19 +22,27 @@ $sql= mysqli_query($pol,"SELECT * FROM posty");
 <li><a href="wyloguj.php">Wyloguj się</a></li>
 </ul>
 <?php
+$sql=mysqli_query($pol,"SELECT login FROM posty where login=$_SESSION[login]");
 if (mysqli_num_rows($sql)<1) {
     echo "Brak postow";
 }
-else {
-    $row= mysqli_fetch_assoc($sql);
-    echo $row["login"]." Dodał post!". " O godzinie $row[datawystawienia]";
+else{
+    while ($row=mysqli_fetch_assoc($sql)) {
+        echo "<div class='post'> <br>
+        <div class = 'box'>";
+        if($row["login"]==$_SESSION["login"]){
+            echo "<span class='usercurrent'>$row[login]</span>";
+        }
+        else{
+            echo "<span class='user'>$row[login]</span>";
+        }
+        echo "
+            <span class = 'godzina'>$row[datawystawienia]</span>
+        </div>";
+    
+}
 }
 ?>
-<div class='post'>
-    <div class = 'box'>
-        <span class='user'>User</span>
-        <span class = 'godzina'>2222</span>
-    </div>
 </div>
 </body>
 </html>
