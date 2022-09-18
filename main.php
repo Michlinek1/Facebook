@@ -21,8 +21,10 @@ $sql= mysqli_query($pol,"SELECT * FROM posty ORDER BY datawystawienia DESC");
 <li><a href="dodaj.php">Dodaj post</a></li>
 <li><a href="wyloguj.php">Wyloguj się</a></li>
 </ul>
+</div>
 <?php
-$sql=mysqli_query($pol,"SELECT login FROM posty where login=$_SESSION[login]");
+
+$sql=mysqli_query($pol,"SELECT * FROM posty WHERE publiczny = 1");
 if (mysqli_num_rows($sql)<1) {
     echo "Brak postow";
 }
@@ -30,14 +32,14 @@ else{
     while ($row=mysqli_fetch_assoc($sql)) {
         echo "<div class='post'> <br>
         <div class = 'box'>";
-        if($row["login"]==$_SESSION["login"]){
-            echo "<span class='usercurrent'>$row[login]</span>";
-        }
-        else{
-            echo "<span class='user'>$row[login]</span>";
-        }
+        echo " <span>Użytkownik: </span>";
+            echo "<span onclick = 'profile()'class='user'> $row[login] </a> </span> <br>";
+            
         echo "
-            <span class = 'godzina'>$row[datawystawienia]</span>
+            <span>Godzina:</span>
+            <span class = 'godzina'>$row[datazalozenia]</span> <br>
+            <span>Treść: </span>";
+        echo "<span class = 'content'>$row[content]</span>       
         </div>";
     
 }
@@ -45,4 +47,9 @@ else{
 ?>
 </div>
 </body>
+<script>
+    function profile(){
+        alert("cos");
+    }
+</script>
 </html>
